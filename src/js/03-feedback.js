@@ -35,7 +35,8 @@ function addValueFromLocalStorage() {
         const { email = "", message = "" } = savedMessageFromJSON;
         inputEmailEl.value = email;
         textareaMessageEl.value = message;
-    }
+    } 
+    
 }
 
 
@@ -53,14 +54,16 @@ function handleFormElInput(event) {
     }
 }
 
-formEl.addEventListener("submit", handleFormElSubmit)
+
+    formEl.addEventListener("submit", handleFormElSubmit)
+
 
 function handleFormElSubmit(event) {
     event.preventDefault();
-    console.log(feedbackFormStateValue);
-    if (inputEmailEl.value === "" || textareaMessageEl.value === "") {
-        return alert("Fill in all fields of the form")
+    if (!feedbackFormStateValue.hasOwnProperty("email") && !feedbackFormStateValue.hasOwnProperty("message")) {
+        return
     }
+    console.log(feedbackFormStateValue);
     feedbackFormStateValue = {};
     localStorage.removeItem(STORAGE_KEY)
     event.currentTarget.reset()

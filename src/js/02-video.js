@@ -11,10 +11,10 @@ import Player from '@vimeo/player';
 let throttle = require('lodash.throttle')
 const player = new Player(iframeEl,
     // options:
-    // {
-    //id: 19231868,
-    // width: 640
-    // }
+    {
+    id: 19231868,
+    width: 640
+    }
 );
 
 player.on('timeupdate', throttle(function(data) {
@@ -27,4 +27,6 @@ player.on('timeupdate', throttle(function(data) {
 }, 1000));
 
 
-player.setCurrentTime(JSON.parse(localStorage.getItem("videoplayer-current-time")))
+if (localStorage.getItem("videoplayer-current-time")) { 
+    player.setCurrentTime(JSON.parse(localStorage.getItem("videoplayer-current-time")))
+}
